@@ -1,4 +1,4 @@
-package demoecommerce.runners;
+package runners;
 
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;

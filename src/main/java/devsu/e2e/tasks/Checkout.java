@@ -1,4 +1,4 @@
-package altiora.tasks;
+package devsu.e2e.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -6,9 +6,9 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import altiora.pages.CheckoutPage;
-import altiora.pages.SecondCheckoutPage;
-import altiora.pages.LastCheckoutPage;
+import devsu.e2e.pages.CheckoutPage;
+import devsu.e2e.pages.SecondCheckoutPage;
+import devsu.e2e.pages.LastCheckoutPage;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 

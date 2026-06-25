@@ -1,4 +1,4 @@
-package devsu.e2e.stepdefinitions;
+package stepdefinitions;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;

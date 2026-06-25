@@ -1,4 +1,4 @@
-package altiora.tasks;
+package devsu.e2e.tasks;
 
 import net.serenitybdd.annotations.Step;
 import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;

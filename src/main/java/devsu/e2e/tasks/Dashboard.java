@@ -1,4 +1,4 @@
-package altiora.tasks;
+package devsu.e2e.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -6,7 +6,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import altiora.pages.DashboardPage;
+import devsu.e2e.pages.DashboardPage;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 

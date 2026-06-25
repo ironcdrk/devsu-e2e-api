@@ -1,4 +1,4 @@
-package altiora.pages;
+package devsu.e2e.pages;
 
 import org.openqa.selenium.By;
 
