@@ -1,5 +1,11 @@
 package stepdefinitions;
 
+import devsu.e2e.questions.ConfirmationMessage;
+import devsu.e2e.tasks.Cart;
+import devsu.e2e.tasks.Checkout;
+import devsu.e2e.tasks.Dashboard;
+import devsu.e2e.tasks.Login;
+import devsu.e2e.tasks.NavigateTo;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -8,14 +14,14 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-import devsu.e2e.pages.HomePage;
-import devsu.e2e.tasks.*;
 
 import java.util.List;
 import java.util.Map;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.equalTo;
 
 public class PurchaseStepDef {
 
@@ -26,26 +32,24 @@ public class PurchaseStepDef {
 
     @Given("el usuario accede al sitio SauceDemo")
     public void elUsuarioAccedeAlSitioSauceDemo() {
-
         theActorCalled("standard_user").attemptsTo(
-            NavigateTo.HomePage()
+                NavigateTo.HomePage()
         );
     }
 
     @When("ingresa el usuario {string} y password {string}")
-    public void ingresaelusuarioypassword(String username, String password) {
-
-        theActorCalled("standard_user").attemptsTo(                
+    public void ingresaElUsuarioYPassword(String username, String password) {
+        theActorInTheSpotlight().attemptsTo(
                 Login.withCredentials(username, password)
         );
     }
 
-    /*@When("agrega el producto {string} al carrito")
+    @When("agrega el producto {string} al carrito")
     public void agregaElProductoAlCarrito(String productName) {
-        theActorCalled("standard_user").attemptsTo(
+        theActorInTheSpotlight().attemptsTo(
                 Dashboard.addProductToCart(productName)
         );
-    }*/
+    }
 
     @When("agrega los productos al carrito")
     public void agregaLosProductosAlCarrito(DataTable dataTable) {
@@ -54,22 +58,22 @@ public class PurchaseStepDef {
         for (Map<String, String> fila : productos) {
             String productName = fila.get("producto");
 
-            theActorCalled("standard_user").attemptsTo(
+            theActorInTheSpotlight().attemptsTo(
                     Dashboard.addProductToCart(productName)
             );
         }
-}
+    }
 
     @And("abre el carrito de compras")
     public void abreElCarritoDeCompras() {
-        theActorCalled("standard_user").attemptsTo(
+        theActorInTheSpotlight().attemptsTo(
                 Dashboard.openCart()
         );
     }
 
     @And("inicia el checkout")
     public void iniciaElCheckout() {
-        theActorCalled("standard_user").attemptsTo(
+        theActorInTheSpotlight().attemptsTo(
                 Cart.startCheckout()
         );
     }
@@ -80,23 +84,25 @@ public class PurchaseStepDef {
             String lastName,
             String postalCode
     ) {
-        theActorCalled("standard_user").attemptsTo(
+        theActorInTheSpotlight().attemptsTo(
                 Checkout.fillForm(firstName, lastName, postalCode)
         );
     }
 
     @And("finaliza la compra")
     public void finalizaLaCompra() {
-        theActorCalled("standard_user").attemptsTo(
+        theActorInTheSpotlight().attemptsTo(
                 Checkout.finish()
         );
     }
 
     @Then("visualiza el mensaje de confirmacion {string}")
-    public void visualizaElMensajeDeConfirmacion(String confirmationMessage) {
-        theActorCalled("standard_user").attemptsTo(
-                Checkout.validateConfirmationMessage(confirmationMessage)
+    public void visualizaElMensajeDeConfirmacion(String expectedConfirmationMessage) {
+        theActorInTheSpotlight().should(
+                seeThat(
+                        ConfirmationMessage.displayed(),
+                        equalTo(expectedConfirmationMessage)
+                )
         );
     }
-
 }
