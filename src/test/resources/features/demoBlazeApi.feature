@@ -29,6 +29,17 @@ Feature: Pruebas API para registro y login en DemoBlaze
       """
     When method post
     Then status 200
+
+    Given path 'signup'
+    And request
+      """
+      {
+        "username": "#(username)",
+        "password": "#(password)"
+      }
+      """
+    When method post
+    Then status 200
     And match response.errorMessage == 'This user already exist.'
 
   Scenario: Login con usuario y password correctos
@@ -42,7 +53,19 @@ Feature: Pruebas API para registro y login en DemoBlaze
       """
     When method post
     Then status 200
-    And match response contains 'Auth_token'
+
+    Given path 'login'
+    And request
+      """
+      {
+        "username": "#(username)",
+        "password": "#(password)"
+      }
+      """
+    When method post
+    Then status 200
+    #And match response.Auth_token == '#string'
+    And match response contains 'Auth_token:'
 
   Scenario: Login con usuario y password incorrectos
     Given path 'login'
