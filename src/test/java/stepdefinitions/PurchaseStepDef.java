@@ -40,12 +40,25 @@ public class PurchaseStepDef {
         );
     }
 
-    @When("agrega el producto {string} al carrito")
+    /*@When("agrega el producto {string} al carrito")
     public void agregaElProductoAlCarrito(String productName) {
         theActorCalled("standard_user").attemptsTo(
                 Dashboard.addProductToCart(productName)
         );
-    }
+    }*/
+
+    @When("agrega los productos al carrito")
+    public void agregaLosProductosAlCarrito(DataTable dataTable) {
+        List<Map<String, String>> productos = dataTable.asMaps(String.class, String.class);
+
+        for (Map<String, String> fila : productos) {
+            String productName = fila.get("producto");
+
+            theActorCalled("standard_user").attemptsTo(
+                    Dashboard.addProductToCart(productName)
+            );
+        }
+}
 
     @And("abre el carrito de compras")
     public void abreElCarritoDeCompras() {

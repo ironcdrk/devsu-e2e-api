@@ -12,14 +12,21 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class Dashboard{
 
-    public static Task addProductToCart(String productName) {
+    /*public static Task addProductToCart(String productName) {
         return Task.where("{0} agrega el producto " + productName + " al carrito",
                 WaitUntil.the(DashboardPage.ADD_BACKPACK_BUTTON, isVisible())
                         .forNoMoreThan(10).seconds(),
                 Click.on(DashboardPage.ADD_BACKPACK_BUTTON)
         );
-    }
+    }*/
 
+    public static Task addProductToCart(String productName) {
+    return Task.where("{0} agrega el producto " + productName + " al carrito",
+            WaitUntil.the(DashboardPage.addButtonForProduct(productName), isVisible())
+                    .forNoMoreThan(10).seconds(),
+            Click.on(DashboardPage.addButtonForProduct(productName))
+    );
+}
     public static Task openCart() {
         return Task.where("{0} abre el carrito de compras",
                 WaitUntil.the(DashboardPage.CART_BUTTON, isVisible())

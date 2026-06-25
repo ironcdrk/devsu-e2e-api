@@ -18,4 +18,13 @@ public class DashboardPage {
         
         public static final Target ADD_BACKPACK_BUTTON = Target.the("BOTÓN PARA AÑADIR EL PRODUCTO BACKPACK AL CARRITO")
             .located(By.id("add-to-cart-sauce-labs-backpack"));
+
+        public static Target addButtonForProduct(String productName) {
+            String productId = productName
+                    .toLowerCase()
+                    .replace(" ", "-");
+
+            return Target.the("BOTÓN PARA AÑADIR EL PRODUCTO " + productName + " AL CARRITO")
+                    .located(By.id("add-to-cart-" + productId));
+        }
 }
