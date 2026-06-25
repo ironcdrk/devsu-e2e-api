@@ -1,0 +1,12 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Serenity reports
+target/
+serenity-reports/
+reports/
+screenshots/
+
+.vscode/
